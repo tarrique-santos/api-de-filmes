@@ -1,102 +1,73 @@
-// const pesquisa = document.querySelector("#pesquisa").value;
-// const pesquisas = document.querySelector("#pesquisa_btn");
-
-
-// pesquisaBtn.onclick = () => {
-  
-//   if (pesquisa.value.length > 0) {
-//     let filmes = new Array();
-//     fetch("https://www.omdbapi.com/?i=tt3896198&apikey=ae519680&s="+pesquisa.value)
-//       .then((response) => response.json())
-//       .then((response) => {
-//         response.Search.forEach((item)=>{ 
-//           console.log(item);
-//           let filme=new Filme(
-//             item.imdbID,
-//             item.Title,
-//             item.Year,
-//             null,
-//             item.Poster,
-//             null,
-//             null,
-//             null,
-//             null,
-//             null,
-//             null,
-//           );
-//           filmes.push(filme);
-          
-//       });
-//       mostrarFilmes(filmes);
-//     })
-//   }
-//   return false;
-// }
-
-// let mostrarFilmes = async(filmes) =>{
-//   let listaFilmes = await document.querySelector("#lista_filmes");
- 
-//   mostrarFilmes.innerHTML = "";
-  
-//   console.log(mostrarFilmes);
-//   if(filmes.length > 0){
-//     filmes.forEach(async(filme) => {
-//       mostrarFilmes.appendChild(await filme.getCard());
-//     })
-//   }
-// }
-
-//meu
-const pesquisa = document.querySelector("#pesquisa_btn");
-// const pesquisas=document.querySelector("#pesquisa");
+let inputBuscarFilme = document.getElementById("input-buscar-filme")
+let btnBuscarFilme = document.querySelector("#btn-buscar-filme")
 
 const form = document.querySelector(".formulario")
-// console.log(form)
+console.log(form)
 
+btnBuscarFilme.onclick = async () => {
 
+  if (inputBuscarFilme.value.length > 0) {
 
-    const pesquisas = document.querySelector("#pesquisa").value
-    resposta = omdbApi.searchMovie(pesquisas)
+    let resultfet = await fetch("http://www.omdbapi.com/?apikey=ae519680&s=" + inputBuscarFilme.value, { mode: "cors" })
+    let jsonresult = await resultfet.json();
 
-    pesquisa.onclick=async()=>{
-      if(pesquisas.value.lenght>0){
-        let filmes =new Array();
-        fetch("http://www.omdbapi.com/?apikey=ae519680&s="+pesquisas.value,{mode:"cors"})
-        .then((resposta)=>resposta.json())
-        .then((resposta)=>{
-            resposta.Search.forEach((item)=>{
-            console.log(item)
-            let filme=new Filme(
-              item.imdbID,
-              item.Title,
-              item.Year,
-              null,
-              null,
-              item.Poster,
-              null,
-              null,
-              null,
-              null,
-              null
-            );
-            filmes.push(filme);
-          });
-          listarFilmes(filmes);
-          
-        });
+    let filmes = jsonresult.Search.map((item) => {
 
-      }
-      return false;
-    }
-    let listarFilmes=async(filmes)=>{
-      let listaFilmes=await document.querySelector("#lista_filmes")
-      listaFilmes.innerHTML="";
-      console.log(listarFilmes)
+      let filme = new Filme(
+        item.imdbID,
+        item.Title,
+        item.Year,
+        null,
+        null,
+        null,
+        null,
+        null,
+        item.Poster,
+        null,
+        null,
+        null
+      );
 
-      if(filmes.lenght>0){
-        filmes.forEach(async(filme)=>{
+      return filme;
+    });
+    listarFilmes(filmes);
 
-          listarFilmes.appendChild(await filme.getCard());
-        })
-      }
-    }
+  }
+  return false;
+}
+let listarFilmes = async (filmes) => {
+
+  let listaFilmes = document.querySelector("#lista-filmes")
+  listaFilmes.innerHTML = "";
+  console.log(filmes)
+  filmes.forEach(async (filme) => {
+
+    listaFilmes.appendChild(await filme.getCard());
+
+    // filme.getDetalhes(filme.id)
+  });
+
+}
+let detalhesFilme = async (id) => {
+  return fetch(`https://www.omdbapi.com/?apikey=ae519680&i=${id}`)
+    .then((resp) => resp.json())
+    .then((resp) => {
+
+      console.log(resp)
+      let filme = new Filme(
+        resp.imdbID,
+        resp.Title,
+        resp.Year,
+        resp.Genre.split(),
+        resp.Runtime,
+        resp.Poster,
+        resp.Plot,
+        resp.Director,
+        resp.Actors.split(", "),
+        resp.Awards,
+        resp.imdbRating
+      )
+      console.log(filme)
+      return filme
+    });
+}
