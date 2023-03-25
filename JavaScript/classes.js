@@ -1,7 +1,7 @@
 class Filme {
-  constructor(id, titulo, ano, genero, duracao, sinopse, classificacao, ranking, poster, avaliacao, direcao, elenco) {
+  constructor(id, Titulo, ano, genero, duracao, sinopse, classificacao, ranking, poster, avaliacao, direcao , lancamento , elenco) {
     this.id = id;
-    this.titulo = titulo;
+    this.titulo = Titulo;
     this.ano = ano;
     this.genero = genero;
     this.duracao = duracao;
@@ -11,22 +11,25 @@ class Filme {
     this.poster = poster;
     this.avaliacao = avaliacao;
     this.direcao = direcao;
+    this.lancamento=lancamento;
     this.elenco = elenco;
   }
   getDetalhes = async (id) => {
     
     let dialog = document.createElement("div")
-    dialog.setAttribute("id", "dialog")
+    dialog.setAttribute("id", "caixa")
     const fetchedFilm = await detalhesFilme(id)
     console.log(fetchedFilm)
+
+    // let corpo=document.getElementById("lita-filmes")
+    // corpo.setAttribute("style","filter: blur(2px);")
     dialog = document.querySelector("#caixa")
     const titulo = document.createElement('h1')
     dialog.appendChild(titulo)
     dialog.setAttribute("style", "position:absolute;")
-    dialog.appendChild(dialog)
-    dialog.setAttribute("style", "z-index:1;")
+    dialog.appendChild("div")
     
-    titulo.appendChild(document.createTextNode(fetchedFilm.titulo))
+    titulo.appendChild(document.createTextNode(fetchedFilm.Titulo))
     dialog.setAttribute("style","display:flex")
 
     return dialog;
@@ -74,10 +77,16 @@ class Filme {
     btnDetalhes.appendChild(document.createTextNode("Ver mais..."))
     btnDetalhes.setAttribute("id", this.id)
     btnDetalhes.setAttribute("class", "btnDetalhesFilme")
-    // console.log(btnDetalhes)
+    console.log(btnDetalhes)
     btnDetalhes.addEventListener('click', () => this.getDetalhes(this.id))
     card.appendChild(btnDetalhes)
 
+    // let fechar=document.querySelector("#fechar")
+    // fechar.addEventListerner('click',() => this.getFechar())
+
     return card
+  }
+  getFechar = async() => {
+
   }
 }

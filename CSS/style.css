@@ -19,12 +19,8 @@ body {
     border-bottom: 1px solid #000;
 }
 
-.favoritar {
-    display: grid;
-    background-color: #ff4848;
-    border-radius: 0 0 5px 5px;
-    justify-content: center;
-    margin: 7%;
+.navbar navbar-expand-lg bg-body-tertiary>a{
+    color:#fff!important;
 }
 
 #btn-buscar-filme,
@@ -59,7 +55,7 @@ li {
 
 .navbar-toggler {
     color: #ff4848 !important;
-    ;
+    
 }
 
 .favoritar>button {
@@ -149,8 +145,9 @@ main {
     background-color: #6DA69B;
     border: 2px solid #000;
     align-items: center;
-    gap: 1px;
+    gap: 0.8px;
     padding: 1px;
+    margin: 5px;
 }
 
 .card>.btnDetalhesFilme:hover {
@@ -164,15 +161,89 @@ img {
 }
 
 #caixa {
-    width: 50vw;
-    height: 100%;
-    background-color: red;
-    position: absolute;
-    top: 20%;
-    left: 25%;
-    margin:0 0 ;
-    background-color: #6DA69B;
+    width: 90%;
+    top: 3rem;
+    left: 5%;
+    margin:0 ;
+    margin-top: 0.5rem;
+    background-color: #000000;
     border-radius: 5px;
     text-align: center;
     z-index: 0;
+}
+
+.todos{
+    display: flex;
+    margin-left: 15px;
+    color:#fff
+    
+}
+
+h3{
+    margin:20px;
+    color: #fff;
+}
+
+#fechar{
+    border-radius: 5px;
+    display: flex;
+   background-color: #000;
+   border: none;
+   
+}
+
+#fechar>#sair{
+    color: #fff;
+    
+}
+
+#fechar-sair{
+    height: 30px;
+    color:#fff;
+}
+
+#img-close{
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    width: 35px;
+    border: 0px;
+    margin: 0.45rem;
+    display: flex;
+    justify-content: end;
+}
+#caixa>#fechar{
+    height: 3vh !important;
+}
+#imagem{
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.conteudo #favoritar {
+    display:flex;
+    
+}
+
+
+#favoritar {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: #ff4848;
+    height: 75px;
+    border-radius: 0 0 5px 5px;
+    justify-content: space-around;
+    align-items: center;
+    left: 50%;
+    margin: 9px;
+    padding: auto;
+    color: #fff;
+}
+#favoritar img{
+    margin-top: 4px;
+}
+@media(max-width:1000px) {
+    #caixa{
+        display:grid;
+    }
 }
