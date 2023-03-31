@@ -21,6 +21,17 @@ class Filme {
     const fetchedFilm = await detalhesFilme(id)
     console.log(fetchedFilm)
 
+    let sinopse = document.querySelector("#result1")
+    // console.log(sinopse, fetchedFilm.classificacao)
+    sinopse.innerText=fetchedFilm.classificacao;
+
+    let atores=document.querySelector("#result2")
+    atores.innerText=(fetchedFilm.poster)
+
+    let banner = document.createElement("img")
+    banner.setAttribute("id", "imagem")
+    banner.setAttribute("src", this.sinopse)
+    
     // let corpo=document.getElementById("lita-filmes")
     // corpo.setAttribute("style","filter: blur(2px);")
     dialog = document.querySelector("#caixa")
@@ -31,7 +42,7 @@ class Filme {
     
     titulo.appendChild(document.createTextNode(fetchedFilm.Titulo))
     dialog.setAttribute("style","display:flex")
-
+    
     return dialog;
   }
   getCard = async () => {

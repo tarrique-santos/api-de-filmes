@@ -10,7 +10,7 @@ btnBuscarFilme.onclick = async () => {
 
     let resultfet = await fetch("http://www.omdbapi.com/?apikey=ae519680&s=" + inputBuscarFilme.value, { mode: "cors" })
     let jsonresult = await resultfet.json();
-    console.log("")
+    console.log(jsonresult)
       
     let filmes = jsonresult.Search.map((item) => {
 
