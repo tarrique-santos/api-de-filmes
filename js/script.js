@@ -8,7 +8,7 @@ btnBuscarFilme.onclick = async () => {
 
   if (inputBuscarFilme.value.length > 0) {
 
-    let resultfet = await fetch("http://www.omdbapi.com/?apikey=ae519680&s=" + inputBuscarFilme.value, { mode: "cors" })
+    let resultfet = await fetch("https://www.omdbapi.com/?apikey=ae519680&s=" + inputBuscarFilme.value, { mode: "cors" })
     let jsonresult = await resultfet.json();
     console.log(jsonresult);
       
