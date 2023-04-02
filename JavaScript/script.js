@@ -1,7 +1,7 @@
-let inputBuscarFilme = document.getElementById("input-buscar-filme")
-let btnBuscarFilme = document.querySelector("#btn-buscar-filme")
+let inputBuscarFilme = document.getElementById("input-buscar-filme");
+let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 
-const form = document.querySelector(".formulario")
+const form = document.querySelector(".formulario");
 console.log(form)
 
 btnBuscarFilme.onclick = async () => {
@@ -10,7 +10,7 @@ btnBuscarFilme.onclick = async () => {
 
     let resultfet = await fetch("http://www.omdbapi.com/?apikey=ae519680&s=" + inputBuscarFilme.value, { mode: "cors" })
     let jsonresult = await resultfet.json();
-    console.log(jsonresult)
+    console.log(jsonresult);
       
     let filmes = jsonresult.Search.map((item) => {
 
@@ -19,7 +19,6 @@ btnBuscarFilme.onclick = async () => {
         item.Title,
         item.Year,
         item.Runtime,
-        null,
         null,
         null,
         null,
@@ -61,14 +60,15 @@ let detalhesFilme = async (id) => {
         resp.Year,
         resp.Genre.split(),
         resp.Runtime,
-        resp.Poster,
         resp.Plot,
+        resp.Rated,
+        resp.Poster,
+        resp.imdbRating,
         resp.Director,
+        resp.Released,
         resp.Actors.split(", "),
-        resp.Awards,
-        resp.imdbRating
       )
-      console.log(filme)
-      return filme
+      console.log(filme);
+      return filme;
     });
 }
